@@ -10,17 +10,21 @@ const int ROSTER_NUM = 5;
 vector<int> jerseyNumber(ROSTER_NUM);
 vector<int> playerRating(ROSTER_NUM);
 int i;
+int tempJersey;
+int tempRating;
 
-void printRoster(const int ROSTER_NUM, int i, vector<int> jerseyNumber, vector<int> playerRating)
+//Prints the roster of the players, and there rating.
+void printRoster(int i, vector<int> jerseyNumber, vector<int> playerRating)
 {
    cout << "ROSTER" << endl;
-   for (i = 0; i < ROSTER_NUM; i++)
+   for (i = 0; i < jerseyNumber.size(); i++)
    {
       cout << "Player " << i + 1 << " -- Jersey number: " << jerseyNumber.at(i) << ", Rating: " << playerRating.at(i) << endl;
    }
    cout << endl;
 }
 
+//Prints the Menu and gets users selection. Recurisive call to itself if selection is not q (Quit)
 void menu(char selection)
 {
    cout << "MENU" << endl;
@@ -38,10 +42,24 @@ void menu(char selection)
    switch (selection)
    {
    case 'a': // Add player
-      cout << "a entered" << endl;
+         cout << "Enter a new player's jersey number:" << endl;
+         cin >> tempJersey;
+         jerseyNumber.push_back(tempJersey);
+         cout << "Enter the player's rating:" << endl;
+         cin >> tempRating;
+         playerRating.push_back(tempRating);
+         menu(selection);
       break;
    case 'd': // Remove player
-      /*code*/
+         cout << "Enter a jersey number:" << endl;
+         cin >> tempJersey;
+         for (int i=0; i<jerseyNumber.size(); i++){
+            if (jerseyNumber.at(i) == tempJersey){
+               jerseyNumber.erase(jerseyNumber.begin()+i);
+               playerRating.erase(playerRating.begin()+i);
+            }
+         }
+         menu(selection);
       break;
    case 'u': // Update player
       /*code*/
@@ -50,11 +68,10 @@ void menu(char selection)
       /*code*/
       break;
    case 'o': // Output roster
-      printRoster(ROSTER_NUM, i, jerseyNumber, playerRating);
+      printRoster(i, jerseyNumber, playerRating);
       menu(selection);
       break;
    case 'q': // Quit Program
-      /*code*/
       break;
 
    default:
@@ -65,7 +82,7 @@ void menu(char selection)
 int main()
 {
    // Entering the Roster, player jersey's and ratings
-   for (i = 0; i < ROSTER_NUM; ++i)
+   for (i = 0; i < jerseyNumber.size(); ++i)
    {
       cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
       cin >> jerseyNumber.at(i);
@@ -74,8 +91,7 @@ int main()
       cout << endl;
    }
 
-   printRoster(ROSTER_NUM, i, jerseyNumber, playerRating);
-
+   printRoster(i, jerseyNumber, playerRating);
    menu(selection);
 
    return 0;
