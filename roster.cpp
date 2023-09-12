@@ -77,7 +77,16 @@ void menu(char selection)
          menu(selection);
       break;
    case 'r': // Output players above a rating
-      /*code*/
+         cout << "Enter a rating:";
+         cin >> tempRating;
+         cout << endl << "ABOVE " << tempRating << endl;
+         for (int i = 0; i<playerRating.size(); i++){
+            if (playerRating.at(i) > tempRating){
+               cout << "Player " << i+1 <<" -- Jersey number: " << jerseyNumber.at(i) << ", Rating: " << playerRating.at(i) << endl;
+            }
+         }
+         cout <<endl;
+         menu(selection);
       break;
    case 'o': // Output roster
       printRoster(i, jerseyNumber, playerRating);
