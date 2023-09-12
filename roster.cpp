@@ -48,6 +48,7 @@ void menu(char selection)
          cout << "Enter the player's rating:" << endl;
          cin >> tempRating;
          playerRating.push_back(tempRating);
+         cout <<endl;
          menu(selection);
       break;
    case 'd': // Remove player
@@ -59,10 +60,21 @@ void menu(char selection)
                playerRating.erase(playerRating.begin()+i);
             }
          }
+         cout <<endl;
          menu(selection);
       break;
    case 'u': // Update player
-      /*code*/
+         cout << "Enter a jersey number:" << endl;
+         cin >> tempJersey;
+         cout << "Enter a new rating for player:" << endl;
+         cin >> tempRating;
+         for (int i =0; i<jerseyNumber.size(); i++){
+            if (jerseyNumber.at(i) == tempJersey){
+               playerRating.at(i) = tempRating;
+            }
+         }
+         cout <<endl;
+         menu(selection);
       break;
    case 'r': // Output players above a rating
       /*code*/
