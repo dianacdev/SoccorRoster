@@ -5,19 +5,18 @@
 #include <vector>
 using namespace std;
 
-char selection;
+
 const int ROSTER_NUM = 5;
 vector<int> jerseyNumber(ROSTER_NUM);
 vector<int> playerRating(ROSTER_NUM);
-int i;
 int tempJersey;
 int tempRating;
 
 //Prints the roster of the players, and there rating.
-void printRoster(int i, vector<int> jerseyNumber, vector<int> playerRating)
+void printRoster( vector<int> jerseyNumber, vector<int> playerRating)
 {
    cout << "ROSTER" << endl;
-   for (i = 0; i < jerseyNumber.size(); i++)
+   for (int i = 0; i < jerseyNumber.size(); i++)
    {
       cout << "Player " << i + 1 << " -- Jersey number: " << jerseyNumber.at(i) << ", Rating: " << playerRating.at(i) << endl;
    }
@@ -89,7 +88,7 @@ void menu(char selection)
          menu(selection);
       break;
    case 'o': // Output roster
-      printRoster(i, jerseyNumber, playerRating);
+      printRoster( jerseyNumber, playerRating);
       menu(selection);
       break;
    case 'q': // Quit Program
@@ -102,8 +101,9 @@ void menu(char selection)
 
 int main()
 {
+   char selection;
    // Entering the Roster, player jersey's and ratings
-   for (i = 0; i < jerseyNumber.size(); ++i)
+   for (int i = 0; i < jerseyNumber.size(); ++i)
    {
       cout << "Enter player " << i + 1 << "'s jersey number:" << endl;
       cin >> jerseyNumber.at(i);
@@ -112,7 +112,7 @@ int main()
       cout << endl;
    }
 
-   printRoster(i, jerseyNumber, playerRating);
+   printRoster(jerseyNumber, playerRating);
    menu(selection);
 
    return 0;
